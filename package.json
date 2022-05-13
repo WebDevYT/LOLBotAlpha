@@ -1,0 +1,19 @@
+{
+  "name": "lolbot",
+  "version": "0.0.1",
+  "description": "LOL Community Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebDevYT/LOLBot.git"
+  },
+  "author": "WebDevYT | @web#0005 | u/WebbCC | webcc.business@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebDevYT/LOLBot/issues"
+  },
+  "homepage": "https://github.com/WebDevYT/LOLBot#readme"
+}
