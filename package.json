@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/WebDevYT/LOLBot/issues"
   },
-  "homepage": "https://github.com/WebDevYT/LOLBot#readme"
+  "homepage": "https://github.com/WebDevYT/LOLBot#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  }
 }
