@@ -51,7 +51,7 @@ for (const file of cmdFiles) {
 // To reply to cmds
 client.on('interactionCreate', async interaction => {
     //console.log(interaction);
-    console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
+    console.log(`${interaction.user.tag} triggered an interaction in #${interaction.channel.name} in Server "${interaction.guild.name}".`);
 
     // To dynamically execute cmds
     // Get cmd from Collection

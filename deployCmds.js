@@ -7,7 +7,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 // Packages for developing slash cmds
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
@@ -16,10 +15,7 @@ const token = process.env['token']
 const clientId = process.env['clientId']
 
 // Array of cmds
-const cmds = [
-    new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
-]
-    .map(cmd => cmd.toJSON());
+const cmds = [];
 
 // To dynamically retrieving cmd files
 const cmdsPath = path.join(__dirname, 'cmds');
@@ -38,7 +34,7 @@ const rest = new REST({ version: '9' }).setToken(token);
         console.log('Started refreshing application (/) cmds.');
 
         await rest.put(
-            Routes.applicationGuildCommands(clientId),
+            Routes.applicationCommands(clientId),
             { body: cmds },
         );
 
