@@ -1,5 +1,7 @@
 'use strict';
 
+// ping command
+
 // Importing & requiring discord.js modules / classes 
 const { Client, Intents } = require('discord.js')
 

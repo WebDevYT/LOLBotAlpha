@@ -1,3 +1,5 @@
+'use strict';
+
 // Ready Event
 // Bot will start receiving info from Discord ONLY after this
 
