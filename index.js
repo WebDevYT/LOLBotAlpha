@@ -6,7 +6,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-// Importing & requiring discord.js modules / classes 
+// Importing & requiring discord.js modules / classes
 const { Client, Collection, Intents } = require('discord.js')
 
 // Config Variables
