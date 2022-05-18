@@ -28,18 +28,10 @@ module.exports = {
                 .setName('server')
                 .setDescription('Info about the server you are in')),
     async execute(interaction) {
-        if (interaction.commandName === 'info') {
-            if (interaction.options.getSubcommand() === 'user') {
-                const user = interaction.options.getUser('user');
-
-                if (user) {
-                    await interaction.reply(`Username: ${user.username}\nID: ${user.id}`);
-                } else {
-                    await interaction.reply(`Your username: ${interaction.user.username}\nYour ID: ${interaction.user.id}`);
-                }
-            } else if (interaction.options.getSubcommand() === 'server') {
-                await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
-            }
+        if (interaction.options.getSubcommand() === 'bot') {
+            
+        } else if (interaction.options.getSubcommand() === 'user') {
+            
         }
     },
 };

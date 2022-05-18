@@ -21,12 +21,12 @@ module.exports = {
         const msg = interaction.options.getString('msg');
         const channel = interaction.options.getChannel('channel');
 
-        if (channel === null){
-            interaction.channel.send(msg);
-            await interaction.reply({ content: 'Echo sent!', ephemeral: true });
-        } else {
+        if (channel){
             channel.send(msg);
             await interaction.reply({ content: `Echo message \"${msg}\" sent in ${channel}!`, ephemeral: true });
+        } else {
+            interaction.channel.send(msg);
+            await interaction.reply({ content: 'Echo sent!', ephemeral: true });
         }
     },
 };
