@@ -31,14 +31,14 @@ const rest = new REST({ version: '9' }).setToken(token);
 
 (async () => {
     try {
-        console.log('Started refreshing application (/) cmds.');
+        console.log(`Started loading bot's / cmds.`);
 
         await rest.put(
             Routes.applicationCommands(clientId),
             { body: cmds },
         );
 
-        console.log('Successfully reloaded application (/) cmds.');
+        console.log(`Successfully loaded bot's / cmds.`);
     } catch (error) {
         console.error(error);
     }

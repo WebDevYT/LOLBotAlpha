@@ -2,22 +2,31 @@
 
 // echo cmd
 
+// Importing & requiring discord.js modules / classes
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('echo')
-        .setDescription(`Replies/echoes your input`)
+        .setDescription('Echoes back/repeats your input to you or to a chosen channel')
         .addStringOption(option =>
+            option.setName('msg')
+                .setDescription('The message you want to echo')
+                .setRequired(true))
+        .addChannelOption(option =>
             option.setName('channel')
-                .setDescription('The channel to echo in')
-                .setRequired(false))
-        .addStringOption(option2 =>
-            option2.setName('input')
-                .setDescription('The input to echo')
-                .setRequired(true)),
+                .setDescription('Select a channel to echo your message in')
+                .setRequired(false)),
     async execute(interaction) {
-        const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true });
-        interaction.editReply(`Pong! \`${sent.createdTimestamp - interaction.createdTimestamp}ms\``);
+        const msg = interaction.options.getString('msg');
+        const channel = interaction.options.getChannel('channel');
+
+        if (channel === null){
+            interaction.channel.send(msg);
+            await interaction.reply({ content: 'Echo sent!', ephemeral: true });
+        } else {
+            channel.send(msg);
+            await interaction.reply({ content: `Echo message \"${msg}\" sent in ${channel}!`, ephemeral: true });
+        }
     },
 };

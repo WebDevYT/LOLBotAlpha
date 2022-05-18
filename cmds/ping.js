@@ -2,6 +2,7 @@
 
 // ping cmd
 
+// Importing & requiring discord.js modules / classes
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
