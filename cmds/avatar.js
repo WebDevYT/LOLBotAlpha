@@ -15,7 +15,7 @@ module.exports = {
                 .setDescription('The user of the avatar that you want to see')
                 .setRequired(false)),
     async execute(interaction) {
-        const user = interaction.options.getUser('user');
+        const user = interaction.options.getMember('user');
 
         if (user) {
             const avEmbed = new MessageEmbed()
