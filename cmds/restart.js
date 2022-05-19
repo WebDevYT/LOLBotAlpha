@@ -11,7 +11,7 @@ const dev = process.env['dev']
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('restart')
-        .setDescription('Restarts bot')
+        .setDescription('Restarts bot servers')
         .addSubcommand(subcommand =>
             subcommand
                 .setName('update')
