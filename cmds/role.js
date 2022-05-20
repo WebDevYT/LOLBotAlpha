@@ -22,15 +22,21 @@ module.exports = {
         const author = interaction.member;
         const user = interaction.options.getUser('user');
         const member = interaction.options.getMember('user');
-        const aRole = interaction.options.getRole('role');
+        const role = interaction.options.getRole('role');
 
         if (author.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
-            if (member.roles.cache.some(role => role.name === aRole.name)) {
-                member.roles.remove(aRole).catch(console.error);
-                await interaction.reply({ content: `Role ${aRole} removed from User ${user}`, ephemeral: true });
+            if (author.roles.highest.comparePositionTo(role) >= 1) {
+                if (member.roles.cache.has(role.id)) {
+                    member.roles.remove(role).catch(console.error);
+                    await interaction.reply({ content: `Removed ${role} role from ${user}`, ephemeral: true });
+                } else {
+                    member.roles.add(role);
+                    await interaction.reply({ content: `Added ${role} role to ${user}`, ephemeral: true });
+                }
+            } else if (author.id === user.id) {
+                await interaction.reply({ content: `You are unable to use higher roles than your own highest role in the server.`, ephemeral: true });
             } else {
-                member.roles.add(aRole);
-                await interaction.reply({ content: `Role ${aRole} added to User ${user}`, ephemeral: true });
+                await interaction.reply({ content: `You are unable to use roles, that are in the same or in a higher position than your own highest role in the server, to other users.`, ephemeral: true });
             }
         } else {
             await interaction.reply({ content: `You do not have permission to manage your/other user's roles.`, ephemeral: true });

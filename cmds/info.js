@@ -32,6 +32,10 @@ module.exports = {
             
         } else if (interaction.options.getSubcommand() === 'user') {
             
+        } else if (interaction.options.getSubcommand() === 'channel') {
+            
+        } else if (interaction.options.getSubcommand() === 'server') {
+            
         }
     },
 };
