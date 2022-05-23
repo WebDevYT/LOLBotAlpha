@@ -34,7 +34,7 @@ module.exports = {
                     await interaction.reply({ content: `Added ${role} role to ${user}`, ephemeral: true });
                 }
             } else if (author.id === user.id) {
-                await interaction.reply({ content: `You are unable to use higher roles than your own highest role in the server.`, ephemeral: true });
+                await interaction.reply({ content: `You are unable to get roles that are higher than your own role in the server.`, ephemeral: true });
             } else {
                 await interaction.reply({ content: `You are unable to use roles, that are in the same or in a higher position than your own highest role in the server, to other users.`, ephemeral: true });
             }

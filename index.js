@@ -9,6 +9,10 @@ const path = require('node:path');
 // Importing & requiring discord.js modules / classes
 const { Client, Collection, Intents } = require('discord.js')
 
+// HTTP
+const http = require('http');
+const keepAlive = require('./keepAlive.js')
+
 // Config Variables
 const token = process.env['token']
 
