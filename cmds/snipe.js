@@ -7,7 +7,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('steal')
+        .setName('snipe')
         .setDescription(`Replies with the most recent deleted message`),
     async execute(interaction) {
         
