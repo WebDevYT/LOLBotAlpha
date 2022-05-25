@@ -6,6 +6,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+// Importing & requiring Sequelize
+const Sequelize = require('sequelize');
+
 // Importing & requiring discord.js modules / classes
 const { Client, Collection, Intents } = require('discord.js')
 
@@ -15,9 +18,45 @@ const keepAlive = require('./keepAlive.js')
 
 // Config Variables
 const token = process.env['token']
+const prefix = process.env['prefix']
 
 // Creating new Discord client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
+// Defining SQL
+const sequelize = new Sequelize('database', 'user', 'password', {
+    // DB Location
+    host: 'localhost',
+    dialect: 'sqlite',
+
+    // Debug Output
+    logging: false,
+
+    // SQLite Storage
+    storage: 'database.sqlite',
+});
+
+// Ready Event
+// Bot will start receiving info from Discord ONLY after this
+client.once('ready', client => {
+    Tags.sync({ force: true });
+    client.user.setActivity('1v1.LOL', { type: 'STREAMING' , url: 'https://www.twitch.tv/webcd'});
+	console.log(`Ready! Logged in as ${client.user.tag}`);
+});
+                                      
+const Tags = sequelize.define('tags', {
+    name: {
+        type: Sequelize.STRING,
+        unique: true,
+    },
+    description: Sequelize.TEXT,
+    username: Sequelize.STRING,
+    usage_count: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+        allowNull: false,
+    },
+});
 
 // To dynamically read Event files
 const eventsPath = path.join(__dirname, 'events');
@@ -50,6 +89,22 @@ for (const file of cmdFiles) {
     // With the key as the command name and the value as the exported module
     client.commands.set(cmd.data.name, cmd);
 }
+
+// Msg listener
+client.on('message', msg => {
+    console.log(msg.content);
+
+    // IF msg doesn't begin w/ prefix OR msg is sent by a bot  
+    if (!msg.content.startsWith(prefix) || msg.author.bot) {
+        return;
+    }
+
+    // Msg arguments
+    const args = msg.content.slice(prefix.length).trim().split(/ +/);
+
+    // Possible 1st arg = cmd
+    const command = args.shift().toLowerCase();
+});
 
 // Interaction listener
 // To reply to cmds

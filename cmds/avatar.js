@@ -33,7 +33,7 @@ module.exports = {
                     { name: '\u200B', value: '\u200B' },
             		{ name: '1024', value: user.displayAvatarURL({ format: "png", dynamic: true, size: 1024 }), inline: true },
             		{ name: '2048', value: user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }), inline: true },
-                    { name: '2096', value: user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }), inline: true },
+                    { name: '4096', value: user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }), inline: true },
             	)
                 .setImage(user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
                 .setTimestamp()
@@ -55,7 +55,7 @@ module.exports = {
                     { name: '\u200B', value: '\u200B' },
             		{ name: '1024', value: interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 1024 }), inline: true },
             		{ name: '2048', value: interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 2048 }), inline: true },
-                    { name: '2096', value: interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }), inline: true },
+                    { name: '4096', value: interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }), inline: true },
             	)
                 .setImage(interaction.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
                 .setTimestamp()
